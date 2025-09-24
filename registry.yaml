@@ -53660,6 +53660,23 @@ packages:
           - windows
   - type: github_release
     repo_owner: microsoft
+    repo_name: ethr
+    description: Ethr is a Comprehensive Network Measurement Tool for TCP, UDP & ICMP
+    version_constraint: "false"
+    version_overrides:
+      - version_constraint: semver("<= 0.2.0")
+        no_asset: true
+      - version_constraint: "true"
+        asset: ethr_{{.OS}}.{{.Format}}
+        format: zip
+        replacements:
+          darwin: osx
+        supported_envs:
+          - darwin
+          - windows
+          - amd64
+  - type: github_release
+    repo_owner: microsoft
     repo_name: kiota
     description: OpenAPI based HTTP Client code generator
     version_constraint: "false"
