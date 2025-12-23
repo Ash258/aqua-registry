@@ -6,33 +6,28 @@ packages:
     description: Static builds of iperf3 binaries for Windows, Linux and MacOSX to do network testing on remote servers
     version_constraint: "false"
     version_overrides:
-      - version_constraint: Version == "3.13"
-        asset: iperf3-{{.Arch}}-openssl-{{.OS}}.{{.Format}}
-        format: zip
-        windows_arm_emulation: true
-        replacements:
-          windows: win
-        supported_envs:
-          - windows/amd64
-      - version_constraint: Version == "3.14"
-        asset: iperf3-{{.Arch}}-{{.OS}}.{{.Format}}
-        format: zip
-        windows_arm_emulation: true
-        replacements:
-          windows: win
-        supported_envs:
-          - windows/amd64
-      - version_constraint: Version in ["3.12+", "3.12+", "3.12+", "3.12+", "3.12+"]
-      - version_constraint: semver("<= 3.17.1")
-        asset: iperf3-{{.Arch}}-openssl-{{.OS}}.{{.Format}}
-        format: zip
-        windows_arm_emulation: true
-        replacements:
-          windows: win
-        supported_envs:
-          - windows/amd64
+      # - version_constraint: Version == "v3.19.1"
+      #   asset: iperf3-{{.Arch}}-{{.OS}}
+      #   format: raw
+      #   windows_arm_emulation: true
+      #   replacements:
+      #     darwin: osx
+      #     windows: win
+      #   overrides:
+      #     - goos: darwin
+      #       goarch: arm64
+      #       asset: iperf3-{{.Arch}}-{{.OS}}-14
+      #     - goos: windows
+      #       format: zip
+      #       asset: iperf3-{{.Arch}}-{{.OS}}.{{.Format}}
+      #       files:
+      #         - name: iperf3.exe
+      #   supported_envs:
+      #     - darwin/arm64
+      #     - windows/amd64
       - version_constraint: "true"
-        asset: iperf3-{{.Arch}}-{{.OS}}-13
+        # - version_constraint: Version in ["v3.20"]
+        asset: iperf3-{{.Arch}}-{{.OS}}
         format: raw
         windows_arm_emulation: true
         replacements:
@@ -41,10 +36,16 @@ packages:
         overrides:
           - goos: darwin
             goarch: arm64
-            asset: iperf3-{{.Arch}}-{{.OS}}-14
+            asset: iperf3-{{.Arch}}-{{.OS}}-15
           - goos: windows
             format: zip
-            asset: iperf3-{{.Arch}}-{{.OS}}-openssl.{{.Format}}
+            asset: iperf3-{{.Arch}}-{{.OS}}.{{.Format}}
+            files:
+              - name: iperf3.exe
+          - goos: linux
+            goarch: arm64
+            asset: iperf3-arm64v8
         supported_envs:
-          - darwin
+          - darwin/arm64
           - windows/amd64
+          - linux
