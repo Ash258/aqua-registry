@@ -1,0 +1,50 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/aquaproj/aqua/main/json-schema/registry.json
+packages:
+  - type: github_release
+    repo_owner: userdocs
+    repo_name: iperf3-static
+    description: Static builds of iperf3 binaries for Windows, Linux and MacOSX to do network testing on remote servers
+    version_constraint: "false"
+    version_overrides:
+      - version_constraint: Version == "3.13"
+        asset: iperf3-{{.Arch}}-openssl-{{.OS}}.{{.Format}}
+        format: zip
+        windows_arm_emulation: true
+        replacements:
+          windows: win
+        supported_envs:
+          - windows/amd64
+      - version_constraint: Version == "3.14"
+        asset: iperf3-{{.Arch}}-{{.OS}}.{{.Format}}
+        format: zip
+        windows_arm_emulation: true
+        replacements:
+          windows: win
+        supported_envs:
+          - windows/amd64
+      - version_constraint: Version in ["3.12+", "3.12+", "3.12+", "3.12+", "3.12+"]
+      - version_constraint: semver("<= 3.17.1")
+        asset: iperf3-{{.Arch}}-openssl-{{.OS}}.{{.Format}}
+        format: zip
+        windows_arm_emulation: true
+        replacements:
+          windows: win
+        supported_envs:
+          - windows/amd64
+      - version_constraint: "true"
+        asset: iperf3-{{.Arch}}-{{.OS}}-13
+        format: raw
+        windows_arm_emulation: true
+        replacements:
+          darwin: osx
+          windows: win
+        overrides:
+          - goos: darwin
+            goarch: arm64
+            asset: iperf3-{{.Arch}}-{{.OS}}-14
+          - goos: windows
+            format: zip
+            asset: iperf3-{{.Arch}}-{{.OS}}-openssl.{{.Format}}
+        supported_envs:
+          - darwin
+          - windows/amd64
